@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block body_block %}
+    <div class="container mt-5">
+    {% for quote in quote_list %}
+        <figure class="text-end">
+            <blockquote class="blockquote">
+                <p>{{ quote.text }}</p>
+            </blockquote>
+            <figcaption class="blockquote-footer">
+                {{ quote.author }} in <cite title="Source Title">"{{ quote.book.title }}"</cite>
+            </figcaption>
+        </figure>
+    {% endfor %}
+</div>
+{% endblock %}

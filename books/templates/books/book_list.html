@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    Book List
+{% endblock %}
+{% block body_block %}
+
+<div class="row row-cols-1 row-cols-md-4 g-4 mt-2">
+{% for book in object_list %}
+<div class="col">
+    <div class="card">
+      <img src="{{ book.photo.url }}" class="card-img-top" alt="..." height="300"
+                                         width="200">
+      <div class="card-body">
+        <h5 class="card-title">{{ book.title }}</h5>
+        <p class="card-text">Book by {{ book.author }}</p>
+          <p class="card-text">Genre(s): {{ book.genre }}</p>
+          <a href="{% url 'books:book-detail' pk=book.id %}" class="btn btn-primary">Learn more!</a>
+      </div>
+    </div>
+  </div>
+{% endfor %}
+</div>
+{% endblock %}

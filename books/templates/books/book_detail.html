@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+{% block body_block %}
+    <h1 class="display-1 text-center mt-md-3">{{ bookmodel.title }}</h1>
+    <h1 class="display-6 text-center">Written by {{ bookmodel.author }}</h1>
+    <p class="display-6 mt-5">Description: </p>
+    <p class="lead">{{ bookmodel.description }}</p>
+    <p class="display-6 mt-5">My review: </p>
+    <p class="lead">{{ bookmodel.my_review }}</p>
+    <a class="btn btn-lg btn-outline-dark" tabindex="-1" role="button" href="{% url 'books:book-quotes' pk=bookmodel.pk %}">View quotes from the book!</a>
+    <form class="mt-5" method="POST">
+        <h1 class="display-6">Leave a comment: </h1>
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Name:</label>
+            <p>{{ form.name }}</p>
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Comment:</label>
+            <p>{{ form.text }}</p>
+        </div>
+        <button type="submit" class="btn btn-lg btn-outline-dark">Submit comment</button>
+    </form>
+    <h1 class="display-6 mt-5">Comments: </h1>
+    {% for comment in comments %}
+        <figure>
+            <blockquote class="blockquote">
+                <p>{{ comment.text }}</p>
+            </blockquote>
+            <figcaption class="blockquote-footer">
+                Written by <cite title="Source Title">{{ comment.name }}</cite>
+            </figcaption>
+        </figure>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block body_block %}
+    <div class="container mt-5">
+    {% for quote in object_list %}
+        {% if bookid == quote.book_id %}
+            <figure class="text-end">
+                <blockquote class="blockquote">
+                    <p>{{ quote.text }}</p>
+                </blockquote>
+                <figcaption class="blockquote-footer">
+                    <cite title="Source Title">{{ quote.author }}</cite>
+                </figcaption>
+            </figure>
+        {% endif %}
+    {% endfor %}
+</div>
+{% endblock %}

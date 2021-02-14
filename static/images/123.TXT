@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    Book List
+{% endblock %}
+{% block body_block %}
+    <div class="margin-left-div" style="margin-left: 100px;">
+                <table cellpadding="30">
+                    <tr class="row">
+                        {% for book in object_list %}
+                            <td class="col-md-4">
+                                <div class="card" style="width: 18rem;">
+                                    <img src="{{ book.photo.url }}" class="card-img-top" alt="..." height="250"
+                                         width="300">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ book.title }}</h5>
+                                        <p class="card-text">Genre: {{ book.genre }}</p>
+                                        <a href="{% url 'books:book-detail' pk=book.pk %}"
+                                           class="btn btn-primary stretched-link">Learn More!</a>
+                                    </div>
+                                </div>
+                            </td>
+                        {% endfor %}
+                    </tr>
+                </table>
+            </div>
+{% endblock %}
